@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 창고 재고 시각화 시스템
 
-## Getting Started
+창고의 Rack Location 별 재고를 시각화하는 웹 기반 시스템
 
-First, run the development server:
+## 기능
 
+- **랙 시각화**: A~M 랙 13개 시각화
+- **품목 검색**: Item No로 재고 위치 검색
+- **색상 강조**: 수량에 따른 주황색 그라데이션
+- **층별 상세보기**: 랙 선택 시 4x4 층별 레이아웃 표시
+- **재고 목록**: 해당 랙의 재고 리스트 표시
+
+## 기술 스택
+
+- **프레임워크**: Next.js 16 + React 18 + TypeScript
+- **스타일**: Tailwind CSS
+- **데이터 파싱**: SheetJS (xlsx)
+- **컨테이너**: Docker
+
+## Docker 실행
+
+### 빌드
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+docker build -t warehouse-visualization .
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 실행
+```bash
+docker run -d -p 8088:8088 --name warehouse-app warehouse-visualization
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Docker Compose 사용
+```bash
+docker-compose up --build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+브라우저에서 `http://localhost:8088` 접속
 
-## Learn More
+## 개발 실행
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm install
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 데이터
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **데이터 파일**: `public/onhand.xlsx`
+- **형식**: Location (랙-칸-층), item no, onhand
 
-## Deploy on Vercel
+## 랙 구조
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+┌──────────────────────────────────────────────────────────┐
+│  K-1  K-2  K-3  K-4   L-1  L-2  L-3  L-4   M-1  M-2  M-3  M-4  │
+├──────────┬──────────────────┬───────────────────────────┤
+│          │  A-1  A-2  A-3  A-4 │  E-1  E-2  E-3  E-4      │
+│  I-1     │  B-1  B-2  B-3  B-4 │  F-1  F-2  F-3  F-4      │
+│  I-2     │  C-1  C-2  C-3  C-4 │  G-1  G-2  G-3  G-4      │
+│  I-3     │  D-1  D-2  D-3  D-4 │  H-1  H-2  H-3  H-4      │
+│  I-4     │                      │                           │
+│          │                      │                           │
+└──────────┴──────────────────┴───────────────────────────┘
+                                            │
+                                        J-1~4
+```
