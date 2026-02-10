@@ -32,7 +32,7 @@ export default function RackDetail({ rackId, inventoryData, searchResults }: Rac
   const rackInventory = inventoryData.filter((item) => item.location.startsWith(`${rackId}-`));
 
   return (
-    <div className="mt-6 p-4 bg-white border-2 border-gray-400 rounded-lg">
+    <div className="mt-6 p-4 bg-blue-50 border-2 border-gray-400 rounded-lg">
       <div className="text-center font-bold text-lg mb-4 text-gray-800">
         {rackId} Rack - 층별 상세보기
       </div>

@@ -28,8 +28,7 @@ export default function TopRack({ rackId, inventoryData, selectedRack, searchRes
   };
 
   return (
-    <div className="flex flex-col items-center gap-1">
-      <div className="text-center font-bold text-gray-800 mb-1">{rackId}</div>
+    <div className="border-2 border-gray-400 rounded-lg p-2">
       <div className="flex gap-1">
         {Array.from({ length: 4 }, (_, i) => {
           const col = i + 1;

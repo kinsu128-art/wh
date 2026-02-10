@@ -28,7 +28,6 @@ export default function RackBlock({ rackId, inventoryData, selectedRack, searchR
 
   return (
     <div className="border-2 border-gray-400 rounded-lg p-2">
-      <div className="text-center font-bold mb-2 text-gray-800">{rackId} Rack</div>
       <div className="flex gap-1">
         {Array.from({ length: 4 }, (_, i) => {
           const col = i + 1;

@@ -45,13 +45,15 @@ export default function WarehouseLayout({ inventoryData, selectedRack, searchRes
 
         {/* Main Area: I | A-D | E-H | J */}
         <div className="flex items-center gap-4">
-          <VerticalRack
-            rackId="I"
-            inventoryData={inventoryData}
-            selectedRack={selectedRack}
-            searchResults={searchResults}
-            onRackClick={onRackClick}
-          />
+          <div className="mr-10">
+            <VerticalRack
+              rackId="I"
+              inventoryData={inventoryData}
+              selectedRack={selectedRack}
+              searchResults={searchResults}
+              onRackClick={onRackClick}
+            />
+          </div>
 
           <div className="flex flex-col gap-2">
             <RackBlock
@@ -115,13 +117,15 @@ export default function WarehouseLayout({ inventoryData, selectedRack, searchRes
             />
           </div>
 
-          <VerticalRack
-            rackId="J"
-            inventoryData={inventoryData}
-            selectedRack={selectedRack}
-            searchResults={searchResults}
-            onRackClick={onRackClick}
-          />
+          <div className="ml-10">
+            <VerticalRack
+              rackId="J"
+              inventoryData={inventoryData}
+              selectedRack={selectedRack}
+              searchResults={searchResults}
+              onRackClick={onRackClick}
+            />
+          </div>
         </div>
       </div>
     </div>

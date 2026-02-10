@@ -28,8 +28,7 @@ export default function VerticalRack({ rackId, inventoryData, selectedRack, sear
   };
 
   return (
-    <div className="flex flex-col gap-1">
-      <div className="text-center font-bold text-gray-800">{rackId}</div>
+    <div className="border-2 border-gray-400 rounded-lg p-2 flex flex-col gap-1">
       {Array.from({ length: 4 }, (_, i) => {
         const row = i + 1;
         const location = `${rackId}-${row}`;
